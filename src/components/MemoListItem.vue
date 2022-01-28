@@ -1,13 +1,13 @@
 <template>
   <li>
-    <a href="#" @click="increment">{{ todo.title }}</a>
+    <a href="#" @click="increment">{{ memo.title }}</a>
   </li>
 </template>
 
 <script>
 export default {
 props: {
-  todo: {
+  memo: {
     type:Object
   },
 },
@@ -20,5 +20,4 @@ methods: {
 </script>
 
 <style>
-
 </style>
