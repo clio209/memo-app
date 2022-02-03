@@ -38,7 +38,7 @@ import MemoListItem from './MemoListItem.vue'
     data()  {
       return {
       text: '',
-      editIndex: -1,
+      editIndex: null,
       memos: []
       }
     },
