@@ -4,10 +4,10 @@
       <ul class="memo-list">
         <li>
           <MemoListItem
-          v-for="(memo, index) in memos" 
-          :key="index" 
+          v-for="(memo,index) in memos"
+          :key="memo.id"
           :memo="memo"
-          @increment="edit(index)"
+          @titleClick="edit(index)"
           />
         </li>
         <li v-show="!memos.length">メモは一つもありません。</li>
@@ -18,7 +18,7 @@
     </div>
     <div class="input">
       <form>
-        <textarea class="memo-input-area" type="text" v-model="text" @keyup.enter="changeItems" ref="editor"></textarea>
+        <textarea class="memo-input-area" type="text" v-model="text" ref="editor"></textarea>
       </form>
       <MemoButton
         @buttonClick="setItems">{{ changeButtonText }}
@@ -34,7 +34,6 @@
 import MemoButton from './MemoButton.vue'
 import MemoListItem from './MemoListItem.vue'
 
-let nextMemoId = 1
   export default {
     data()  {
       return {
@@ -67,22 +66,22 @@ let nextMemoId = 1
       },
       setItems: function() {
         let item = {
-          id: nextMemoId++,
+          id: new Date().getTime(),
           title: this.text.split(/\r\n|\r|\n/)[0],
           content: this.text,        
         }
-        if (this.editIndex === -1) {
+        if (this.editIndex === null) {
           this.memos.push(item)
           this.text = ''
         } else {
           this.memos.splice(this.editIndex, 1, item)
-          this.editIndex = -1
+          this.editIndex = null
         }
         this.cancel()
       },
       cancel() {
         this.text = ""
-        this.editIndex = -1
+        this.editIndex = null
       },
       edit(index) {
         this.editIndex = index
@@ -95,7 +94,7 @@ let nextMemoId = 1
     },
     computed: {
       changeButtonText: function() {
-        return this.editIndex === -1 ? "追加" : "編集"
+        return this.editIndex === null ? "追加" : "編集"
       }
     },
     components: {

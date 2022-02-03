@@ -1,6 +1,6 @@
 <template>
   <li>
-    <a href="#" @click="increment">{{ memo.title }}</a>
+    <a href="#" @click="titleClick">{{ memo.title }}</a>
   </li>
 </template>
 
@@ -12,8 +12,8 @@ props: {
   },
 },
 methods: {
-  increment: function() {
-    this.$emit('increment')
+  titleClick: function() {
+    this.$emit('titleClick')
   }
 }
 }
