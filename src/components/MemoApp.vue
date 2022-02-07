@@ -26,13 +26,21 @@
       <MemoButton
         @buttonClick="deleteItem(index)">削除
       </MemoButton>
-    </div>    
+      <MemoForm
+          type="text"
+          class="memo-input-area"
+          :text="text"
+          @inputEvent="inputEvent"
+          ref="editor"
+      />
+    </div>
   </div>
 </template>
 
 <script>
 import MemoButton from './MemoButton.vue'
 import MemoListItem from './MemoListItem.vue'
+import MemoForm from './MemoForm.vue'
 
   export default {
     data()  {
@@ -43,7 +51,6 @@ import MemoListItem from './MemoListItem.vue'
       }
     },
     props: {
-      msg: String
     },
     watch: {
       memos: {
@@ -90,6 +97,9 @@ import MemoListItem from './MemoListItem.vue'
       },
       memoFocus() {
         this.$refs.editor.focus()
+      },
+      inputEvent(event) {
+        this.text = event.target.value
       }
     },
     computed: {
@@ -98,6 +108,7 @@ import MemoListItem from './MemoListItem.vue'
       }
     },
     components: {
+        MemoForm,
         MemoButton,
         MemoListItem
     }
