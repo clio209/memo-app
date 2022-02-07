@@ -11,7 +11,6 @@ export default {
     text: {
       type:String
     },
-
   },
   methods: {
     buttonClick: function() {

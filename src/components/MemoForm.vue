@@ -1,23 +1,25 @@
 <template>
-  <textarea class="memo-input-area" 
-    type="text"
-    :value="value"
-    @input="$emit('input', $event.target.value)"
-  >
-  </textarea>
+  <form>
+    <textarea type="text" @input="inputEvent">
+    </textarea>
+  </form>
 </template>
 
 <script>
 export default {
-  props: ['value']
-}
+  props: {
+    text: {
+      type:String
+    },
+  },
+  methods: {
+    inputEvent: function () {
+      this.$emit('inputEvent')
+    }
+  }
+  }
+
 </script>
 
 <style>
-.memo-input-area {
-  width: 200px;
-  height: 300px;
-  padding: 8px 10px;
-  border: 1px solid skyblue;
-}
 </style>

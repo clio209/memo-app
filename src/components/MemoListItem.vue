@@ -1,24 +1,23 @@
 <template>
   <li>
-    <a href="#" @click="increment">{{ todo.title }}</a>
+    <a href="#" @click="titleClick">{{ memo.title }}</a>
   </li>
 </template>
 
 <script>
 export default {
 props: {
-  todo: {
+  memo: {
     type:Object
   },
 },
 methods: {
-  increment: function() {
-    this.$emit('increment')
+  titleClick: function() {
+    this.$emit('titleClick')
   }
 }
 }
 </script>
 
 <style>
-
 </style>
